@@ -32,13 +32,16 @@ function buildPlot(sample) {
                 x: values.slice(0,10).reverse(),
                 y: ids.slice(0,10).map(otuID => `OTU ${otuID}`).reverse(),
                 text: labels.slice(0,10).reverse(),
+                marker: {color: "rgb(17, 50, 194)"},
                 type: "bar",
                 orientation: "h"
             }
         ]
 
         var barLayout = {
-            title: "Top 10 OTU"
+            title: "Top 10 Bacteria Cultures Found",
+            xaxis: {title: "Bacteria Sample"},
+            yaxis: {title: "OTU ID"}
         }
 
         Plotly.newPlot("bar", barTrace, barLayout)
@@ -51,13 +54,17 @@ function buildPlot(sample) {
                 mode: "markers",
                 marker: {
                     color: ids,
+                    colorscale: "Earth",
                     size: values
                 }
             }
         ];
 
         var bubbleLayout = {
-            hovermode: "closest"
+            title: "Bacteria Cultures Per Sample",
+            hovermode: "closest",
+            xaxis: {title: "OTU ID"},
+            yaxis: {title: "Amount of Bacteria"}
         }
 
         Plotly.newPlot("bubble", bubbleTrace, bubbleLayout)
